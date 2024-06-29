@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { fonts, colors } from '../assets/theme'
 
-const HeaderText = ({title, titleColor}) => {
+const HeaderText = ({title, titleColor, additionalStyles}) => {
   return (
-    <View>
+    <View style={[styles.contaioner, { additionalStyles }]}>
       <Text style={[styles.headerText, {}]}>{title}</Text>
     </View>
   )

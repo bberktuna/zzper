@@ -26,6 +26,7 @@ const AuthLayout = () => {
             headerShown: false
           }}
         />
+
         {/* <Stack.Screen 
           name='add-data'
           options={{

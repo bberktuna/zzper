@@ -2,12 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context"
 import { fonts, colors } from '../assets/theme'
-import { router } from 'expo-router';
+import { Redirect, router, useRouter } from 'expo-router';
 import CustomButton from './../components/CustomButton';
 import HeaderText from '../components/HeaderText';
+import { useGlobalContext } from './../context/GlobalProvider';
 
 
-const App = () => {
+
+const Welcome = () => {
+
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/home" />;
   return (
 //<SafeAreaView style={styles.container}>
   <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -34,7 +40,7 @@ const App = () => {
       </View>
 
         <StatusBar style="auto" />
-        </ScrollView>
+    </ScrollView>
 
   //</SafeAreaView>
 
@@ -42,7 +48,8 @@ const App = () => {
   );
 }
 
-export default App
+export default Welcome
+
 
 const styles = StyleSheet.create({
   scrollContainer: {
