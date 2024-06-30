@@ -4,7 +4,7 @@ import { colors, fonts } from '../assets/theme'
 
 const CustomButton = ({handlePress, title, additionalStyles, viewStyles, buttonBackgroundColor, textColor}) => {
   return (
-    <View style={[styles.container, viewStyles]}>
+    <View style={[styles.container,  additionalStyles ]}>
         <TouchableOpacity onPress={handlePress} style={[styles.button, { backgroundColor:buttonBackgroundColor} ]}>
             <Text style={[styles.buttonText, {color: textColor}]}>
                 {title}

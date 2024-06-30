@@ -4,23 +4,23 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { colors, fonts } from '../assets/theme';
 
 
-const CustomTextField = ({ placeholder, value, handleChangeText, iconColor }) => {
+const CustomTextField = ({ placeholder, value, handleChangeText, iconColor, additionalStyles, additionalInputStyles }) => {
 
     const [showPassword, setShowPassword] = useState(false)
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, additionalStyles]}>
         <TextInput
             
-            style={styles.textInput}
+            style={[styles.textInput, additionalInputStyles]}
             value={value}
             placeholder={placeholder}
             onChangeText={handleChangeText}
             autoCorrect={false}
             secureTextEntry={
-                placeholder === 'Password' || 'Confirm Password' && 
-                !showPassword
+                placeholder === 'Password' || 'Confirm Password' 
+                //&& !showPassword
             }
         />
 
