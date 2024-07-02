@@ -10,18 +10,18 @@ import { fonts, colors } from '../../assets/theme'
 import CustomTextField from './../../components/CustomTextField';
 import CustomButton from '../../components/CustomButton'
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment';
+
 
 
 
 const home = () => {
 
-  const handleMonthChange = (date) => {
-    setCurrentMonth(date.dateString);
+  const [currentMonth, setCurrentMonth] = useState(moment().format('YYYY-MM-DD'));
+
+  const handleMonthChange = (month) => {
+    setCurrentMonth(month.dateString);
   };
-
-
-
-  
 
   const [form, setForm] = useState({
     hours: '',
@@ -42,6 +42,7 @@ const home = () => {
     bottomSheetRef.current.snapToIndex(0);
 
   };
+  //? BOTTOM SHEET CONTENT
     const renderContent = () => (
       <View style={styles.contentContainer}>
         <View style={styles.bottomSheetHeader}>
@@ -129,13 +130,38 @@ const home = () => {
               //alert(day.dateString)
               handleOpenPress()
             }}
+            style={styles.calendar}
+            current={currentMonth}
+            onMonthChange={handleMonthChange}
+            theme={{
+              backgroundColor: '#ffffff',
+              calendarBackground: '#ffffff',
+              textSectionTitleColor: '#b6c1cd',
+              textSectionTitleDisabledColor: '#d9e1e8',
+              selectedDayTextColor: colors.purple2,
+              todayTextColor: colors.purple2,
+              dayTextColor: '#2d4150',
+              textDisabledColor: '#d9e1e8',
+              dotColor: colors.purple2,
+              selectedDotColor: '#ffffff',
+              arrowColor: colors.purple2,
+              disabledArrowColor: '#d9e1e8',
+              monthTextColor: colors.purple2,
+              indicatorColor: colors.purple2,
+              textDayFontFamily: fonts.bold,
+              textMonthFontFamily: fonts.bold,
+              textDayHeaderFontFamily: fonts.bold,
+              textMonthFontSize: 18,
+              selectedDayBackgroundColor: colors.purple1         
+            }}
+
           />
 
         </View>
         {/*//! BOTTOM SHEET */}
         <BottomSheet
             ref={bottomSheetRef}
-            index={1} // Initially keep the bottom sheet closed
+            index={-1} // Initially keep the bottom sheet closed
             snapPoints={snapPoints}
             enablePanDownToClose={true}
             backgroundComponent={CustomBackground}
@@ -166,15 +192,13 @@ const styles = StyleSheet.create({
   },
   calendarView: {
     flex: .8,
+    justifyContent: 'center',
   },
   customBackground: {
     borderWidth: .5,
     borderRadius: 20, // Adjust this value to change the radius of the corners
     overflow: 'hidden',
     borderColor: 'gray' ,// Adjust this value to change the radius of the corners
-
-   
-
   },
   contentContainer: {
     flex: 1,
@@ -200,5 +224,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: colors.purple2
   },
-
+  calendar: {
+    height: '80%',
+    width: '100%',
+  },
 })

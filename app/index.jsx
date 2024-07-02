@@ -13,7 +13,7 @@ const Welcome = () => {
 
   const { loading, isLogged } = useGlobalContext();
 
-  if (!loading && isLogged) return <Redirect href="/home" />;
+  if (!loading && isLogged) return <Redirect href="/list" />;
   return (
 //<SafeAreaView style={styles.container}>
   <ScrollView contentContainerStyle={styles.scrollContainer}>

@@ -6,7 +6,6 @@ const fonts = {
   semibold: "RobotoMono-SemiBold",
 }
 const colors = {
-  purple1: "#C6BAFC",
   purple2: "#7354F5",
   purple3: "#b9a3e3",
   purple4: "#72286F",
