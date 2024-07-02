@@ -24,8 +24,8 @@ const home = () => {
   };
 
   const [form, setForm] = useState({
-    hours: '',
-    departure: '',
+    hours: '8',
+    departure: 'Den Haag',
     destination: '',
     kilometers: '',
     additionalInfo: ''
@@ -70,6 +70,7 @@ const home = () => {
                 placeholderTextColor='#7b7b8b'
                 additionalInputStyles={{paddingBottom: 12, minWidth: '44%'}}
                 additionalStyles={{minWidth: '44%'}}
+                
               />
               <Ionicons name="arrow-forward" size={24} color="black" style={styles.forwardIcon} />
               <CustomTextField 

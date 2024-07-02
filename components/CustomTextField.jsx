@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         padding: 12,
         borderRadius: 25,
-        fontFamily: fonts.regular,
+        fontFamily: fonts.bold,
         backgroundColor: '##d3d3d3',
+
 
     },
     container: {
