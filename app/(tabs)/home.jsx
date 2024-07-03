@@ -18,6 +18,7 @@ import moment from 'moment';
 const home = () => {
 
   const [currentMonth, setCurrentMonth] = useState(moment().format('YYYY-MM-DD'));
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
 
   const handleMonthChange = (month) => {
     setCurrentMonth(month.dateString);
@@ -37,14 +38,22 @@ const home = () => {
   );
 
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => ['80%', '80%', '80%'], []);
+  const snapPoints = useMemo(() => ['68%', '68%', '68%' ], []);
   const handleOpenPress = () => {
     bottomSheetRef.current.snapToIndex(0);
+  }
 
-  };
+  const handleSheetChanges = (index) => {
+    if (index === -1) {
+      setIsBottomSheetVisible(false);
+    } else {
+      setIsBottomSheetVisible(true);
+    }
+  }
+
   //? BOTTOM SHEET CONTENT
     const renderContent = () => (
-      <View style={styles.contentContainer}>
+      <View style={[styles.contentContainer]}>
         <View style={styles.bottomSheetHeader}>
           <HeaderText
             title='Week 26'
@@ -117,9 +126,9 @@ const home = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container]}>
   {/*//! HEADER */}
-        <View style={styles.headerView}>
+        <View style={[styles.headerView]}>
           <HeaderText 
             title='Calendar'
           />
@@ -167,6 +176,9 @@ const home = () => {
             enablePanDownToClose={true}
             backgroundComponent={CustomBackground}
             borderRadius={20}
+            onClose={() => setIsBottomSheetVisible(false)}
+            onChange={handleSheetChanges}
+
           >
             {renderContent()}
           </BottomSheet>
@@ -196,24 +208,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   customBackground: {
-    borderWidth: .5,
+    borderWidth: 1.5,
     borderRadius: 20, // Adjust this value to change the radius of the corners
     overflow: 'hidden',
-    borderColor: 'gray' ,// Adjust this value to change the radius of the corners
+    borderColor: '#d3d3d3' ,// Adjust this value to change the radius of the corners
+    
   },
   contentContainer: {
     flex: 1,
+  },
+
+  bottomSheetHeaderDate: {
+    fontFamily: fonts.semibold,
+    color: 'gray'
   },
   bottomSheetHeader: {
     flex: .2,
     padding: 12
   },
-  bottomSheetHeaderDate: {
-    fontFamily: fonts.semibold,
-    color: 'gray'
-  },
   bottomSheetInputsView: {
-    flex: .825,
+    flex: .775,
     paddingHorizontal: 12,
     
   },
@@ -229,4 +243,5 @@ const styles = StyleSheet.create({
     height: '80%',
     width: '100%',
   },
+
 })

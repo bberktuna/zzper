@@ -10,7 +10,7 @@ const SearchBar = () => {
   const [searchText, setSearchText] = useState('')
   const [width, setWidth] = useState(200); // Initial width
 
-
+//! ISFOCUSED FALSE OLDUGUNDA TEXT SILINSIN
 
   return (
     <View style={{ flexDirection: 'row'}}>
@@ -26,6 +26,7 @@ const SearchBar = () => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onPressOut={setIsFocused}
+          
 />
       </View>
       { isFocused ? (
@@ -57,6 +58,7 @@ const SearchBar = () => {
 export default SearchBar
 
 const styles = StyleSheet.create({
+  
   container: {
     flex: 1,
     flexDirection: 'row',
